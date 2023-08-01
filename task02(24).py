@@ -8,3 +8,28 @@
 # собирает ягоды с этого куста и с двух соседних с ним.
 # Напишите программу для нахождения максимального числа ягод, которое может собрать за один заход собирающий модуль, 
 # находясь перед некоторым кустом заданной во входном списке урожайности грядки.
+
+import random
+
+def bush_list(a):
+    garden_bed = []
+    for i in range(a):
+        garden_bed.append(random.randint(0, 100))
+    print('Вот такие кусты получились: ', garden_bed)
+    return garden_bed
+
+def find_max_blueberry(a):
+    max_sum = 0
+    for i in range(len(a)):
+            if i == 0:
+                sum = a[i] + a[i+1] + a[len(a)-1]
+            elif i == len(a)-1:
+                sum = a[i] + a[0] + a[i-1]
+            else:
+                sum = a[i] + a[i+1] + a[i-1]
+            if sum > max_sum:
+                max_sum = sum
+    return max_sum
+
+bushs = int(input("Введите колличество кустов: "))
+print(f'Максимальное количество ягод за один сбор: ', find_max_blueberry(bush_list(bushs)))
